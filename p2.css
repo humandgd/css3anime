@@ -1,0 +1,27 @@
+.box1{
+    width:200px;
+    height:200px;
+    background-color: darkmagenta;   
+}
+.ck{
+    animation: okumura1 1s both;
+}
+/*
+:hoverにanimationを指定すると
+マウスオーバー時にアニメーションを
+実行できる
+.box1:hover{
+    animation: okumura1 1s both;
+}
+*/
+@keyframes okumura1 {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(100px);
+    }
+    100%{
+        transform: translate(200px,100px);
+    }
+}

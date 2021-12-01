@@ -1,0 +1,86 @@
+/* 
+transformは各順序によって、
+変形結果が変わる。
+transformは右から左に向かって順番に
+適用されていくので注意が必要です。
+以下がそれを試したサンプルです。
+*/
+.box1{
+    width:100px;
+    height:100px;
+    background-color: brown;
+    transform: translateX(200px) rotate(45deg);
+}
+.box2{
+    width:100px;
+    height:100px;
+    background-color: rgb(44, 123, 212);    
+    transform: rotate(45deg) translateX(200px);
+}
+/*
+box3とbox4ではkeyframeを設定して
+アニメーションを定義しているが、
+transformの書く順番によってアニメーションの
+仕方が変わってくるのを確認する例
+Animation種類に関しては以下を参照
+https://developer.mozilla.org/ja/docs/Web/CSS/animation-timing-function
+*/
+.box3{
+    width:200px;
+    height:200px;
+    background-color: chocolate;
+    animation: 3s linear 1s infinite cyclic1;
+}
+@keyframes cyclic1 {
+    from {
+      transform: rotate(0deg) translateX(200px);
+    }
+    to {
+      transform: rotate(360deg) translateX(200px);
+    }
+  }
+  .box4{
+    width:200px;
+    height:200px;
+    background-color: rgb(199, 55, 122);
+    animation: 3s linear 1s infinite cyclic2;
+  }
+  @keyframes cyclic2 {
+    from {
+      transform: translateX(200px) rotate(0deg);
+    }
+    to {
+      transform: translateX(200px) rotate(360deg);
+    }
+  }
+  /* 
+  transform-originを使うと
+  アニメーションの基点を定義することが
+  できます。
+  サンプルではcenter bottomで左右の中心、
+  上下の下の方に基点を設定。
+  */
+  .box5{
+    width:200px;
+    height:200px;
+    background-color: darkgreen;
+    animation:shake 1s 1 ease-in-out both;
+    transform-origin: center bottom;  
+}
+  @keyframes shake {
+    20% {
+      transform: rotate(30deg);
+    }
+    40% {
+      transform: rotate(-20deg);
+    }
+    60% {
+      transform: rotate(10deg);
+    }
+    80% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
